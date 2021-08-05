@@ -69,6 +69,9 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JMu-8o-F5R"/>
+                                        </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="iu" translatesAutoresizingMaskIntoConstraints="NO" id="b5l-mS-o2R">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -109,6 +112,11 @@
                             <constraint firstItem="NmX-Jd-Xl5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dbb-er-0dS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginScrollView" destination="NmX-Jd-Xl5" id="AJF-zO-8gs"/>
+                        <outlet property="loginTextField" destination="4wy-aB-Chb" id="Gsw-rS-yZd"/>
+                        <outlet property="passwordTextField" destination="cgu-oi-IA6" id="Bl2-MA-OHA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
