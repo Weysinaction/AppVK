@@ -5,18 +5,22 @@ import UIKit
 
 /// ViewController-
 class ViewController: UIViewController {
-    @IBOutlet var loginScrollView: UIScrollView!
+    // MARK: IBOutlet
 
-    @IBOutlet var loginTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet private var loginScrollView: UIScrollView!
+    @IBOutlet private var loginTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
 
-    var scrollViewTapGestureRecognizer = UITapGestureRecognizer()
+    // MARK: private properties
+
+    private var scrollViewTapGestureRecognizer = UITapGestureRecognizer()
+
+    // MARK: ViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        scrollViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        loginScrollView.addGestureRecognizer(scrollViewTapGestureRecognizer)
+        setupScrollView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +47,13 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
+    // MARK: private methods
+
+    private func setupScrollView() {
+        scrollViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        loginScrollView.addGestureRecognizer(scrollViewTapGestureRecognizer)
+    }
+
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel)
@@ -51,7 +62,7 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    @objc func keyBoardWillShown(notification: Notification) {
+    @objc private func keyBoardWillShown(notification: Notification) {
         let info = notification.userInfo as NSDictionary?
         let kbSize = (info?.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue)?.cgRectValue.size
 
@@ -61,14 +72,16 @@ class ViewController: UIViewController {
         loginScrollView.scrollIndicatorInsets = contentInset
     }
 
-    @objc func keyBoardWillHide(notification: Notification) {
+    @objc private func keyBoardWillHide(notification: Notification) {
         loginScrollView.contentInset = UIEdgeInsets.zero
         loginScrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
 
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         loginScrollView.endEditing(true)
     }
+
+    // MARK: IBAction
 
     @IBAction func loginButtonTapped(_ sender: Any) {
         guard let login = loginTextField.text, let password = passwordTextField.text else { return }
