@@ -4,7 +4,7 @@
 import UIKit
 
 /// ViewController-
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     // MARK: IBOutlet
 
     @IBOutlet private var loginScrollView: UIScrollView!
@@ -26,6 +26,18 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        addNotificationObservers()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        removeNotificationObservers()
+    }
+
+    // MARK: private methods
+
+    private func addNotificationObservers() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyBoardWillShown(notification:)),
@@ -40,14 +52,10 @@ class ViewController: UIViewController {
         )
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
+    private func removeNotificationObservers() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
-    // MARK: private methods
 
     private func setupScrollView() {
         scrollViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
