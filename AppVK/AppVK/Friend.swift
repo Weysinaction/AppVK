@@ -4,7 +4,6 @@
 import Foundation
 
 /// Friend-
-
 struct Friend {
     let name: String
     let description: String

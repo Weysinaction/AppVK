@@ -39,7 +39,8 @@ final class DetailCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 }
 
-//MARK: UICollectionViewDelegateFlowLayout
+// MARK: UICollectionViewDelegateFlowLayout
+
 extension DetailCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
