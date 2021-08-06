@@ -17,6 +17,10 @@
 		E02FF05E26BB268E00E3C2E4 /* AppVKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF05D26BB268E00E3C2E4 /* AppVKUITests.swift */; };
 		E02FF06E26BCA25800E3C2E4 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF06D26BCA25700E3C2E4 /* FriendsTableViewController.swift */; };
 		E02FF07026BCA2F700E3C2E4 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF06F26BCA2F700E3C2E4 /* GroupsTableViewController.swift */; };
+		E02FF07226BCB18C00E3C2E4 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF07126BCB18C00E3C2E4 /* FriendsTableViewCell.swift */; };
+		E02FF07426BCB24700E3C2E4 /* DetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF07326BCB24700E3C2E4 /* DetailCollectionViewController.swift */; };
+		E02FF07626BCB25800E3C2E4 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF07526BCB25800E3C2E4 /* DetailCollectionViewCell.swift */; };
+		E02FF07826BCB79A00E3C2E4 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF07726BCB79A00E3C2E4 /* Friend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		E02FF05F26BB268E00E3C2E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E02FF06D26BCA25700E3C2E4 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		E02FF06F26BCA2F700E3C2E4 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
+		E02FF07126BCB18C00E3C2E4 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		E02FF07326BCB24700E3C2E4 /* DetailCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewController.swift; sourceTree = "<group>"; };
+		E02FF07526BCB25800E3C2E4 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		E02FF07726BCB79A00E3C2E4 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +115,11 @@
 				E02FF03D26BB268500E3C2E4 /* SceneDelegate.swift */,
 				E02FF03F26BB268500E3C2E4 /* ViewController.swift */,
 				E02FF04126BB268500E3C2E4 /* Main.storyboard */,
+				E02FF07126BCB18C00E3C2E4 /* FriendsTableViewCell.swift */,
 				E02FF06D26BCA25700E3C2E4 /* FriendsTableViewController.swift */,
+				E02FF07326BCB24700E3C2E4 /* DetailCollectionViewController.swift */,
+				E02FF07526BCB25800E3C2E4 /* DetailCollectionViewCell.swift */,
+				E02FF07726BCB79A00E3C2E4 /* Friend.swift */,
 				E02FF06F26BCA2F700E3C2E4 /* GroupsTableViewController.swift */,
 				E02FF04426BB268A00E3C2E4 /* Assets.xcassets */,
 				E02FF04626BB268A00E3C2E4 /* LaunchScreen.storyboard */,
@@ -306,8 +318,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E02FF04026BB268500E3C2E4 /* ViewController.swift in Sources */,
+				E02FF07426BCB24700E3C2E4 /* DetailCollectionViewController.swift in Sources */,
 				E02FF07026BCA2F700E3C2E4 /* GroupsTableViewController.swift in Sources */,
+				E02FF07626BCB25800E3C2E4 /* DetailCollectionViewCell.swift in Sources */,
 				E02FF03C26BB268500E3C2E4 /* AppDelegate.swift in Sources */,
+				E02FF07226BCB18C00E3C2E4 /* FriendsTableViewCell.swift in Sources */,
+				E02FF07826BCB79A00E3C2E4 /* Friend.swift in Sources */,
 				E02FF06E26BCA25800E3C2E4 /* FriendsTableViewController.swift in Sources */,
 				E02FF03E26BB268500E3C2E4 /* SceneDelegate.swift in Sources */,
 			);
