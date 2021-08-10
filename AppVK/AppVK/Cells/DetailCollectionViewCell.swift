@@ -9,5 +9,4 @@ final class DetailCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var likeButton: UIButton!
 }

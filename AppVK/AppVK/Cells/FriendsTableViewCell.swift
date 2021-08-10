@@ -7,7 +7,7 @@ import UIKit
 final class FriendsTableViewCell: UITableViewCell {
     // MARK: IBOutlet
 
-    @IBOutlet var friendImageView: UIImageView!
+    @IBOutlet var profileImageView: ProfileImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
 }
