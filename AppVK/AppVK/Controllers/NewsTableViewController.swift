@@ -4,10 +4,12 @@
 import UIKit
 
 /// NewsTableViewController-
-class NewsTableViewController: UITableViewController {
+final class NewsTableViewController: UITableViewController {
+    //MARK: private properties
     private var cellID = "newsCell"
     private var newsArray: [News] = []
 
+    //MARK: NewsTableViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         setupData()

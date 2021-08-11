@@ -4,26 +4,28 @@
 import UIKit
 
 /// NewsTableViewCell-
-class NewsTableViewCell: UITableViewCell {
-    @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var subtitleLabel: UILabel!
-    @IBOutlet var postTextView: UITextView!
-    @IBOutlet var postImageView: UIImageView!
+final class NewsTableViewCell: UITableViewCell {
+    //MARK: IBOutlet
+    @IBOutlet private var profileImageView: UIImageView!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var subtitleLabel: UILabel!
+    @IBOutlet private var postTextView: UITextView!
+    @IBOutlet private var postImageView: UIImageView!
 
-    // MARK: private properties
-
+    // MARK: public properties
     var name = ""
     var subtitle = ""
     var profileImageName = ""
     var newsText = ""
     var newsImageName = ""
 
+    //MARK: NewsTableViewCell
     override func layoutSubviews() {
         setupProfileImageView()
         setupViews()
     }
 
+    //MARK: private methods
     private func setupViews() {
         nameLabel.text = name
         subtitleLabel.text = subtitle
