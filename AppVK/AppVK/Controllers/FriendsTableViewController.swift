@@ -12,13 +12,16 @@ final class FriendsTableViewController: UITableViewController {
     private var sections: [Character: [Friend]] = [:]
     private var sortedSections: [(Character, [Friend])] = []
     private var sectionTitles: [Character] = []
+    private var filteredTableData: [Friend] = []
+    private var resultSearchController = UISearchController()
 
     // MARK: FriendsTableViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupData()
-        setupSections()
+        setupSections(array: friendsArray)
+        setupSearchController()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -32,8 +35,28 @@ final class FriendsTableViewController: UITableViewController {
 
     // MARK: private methods
 
-    private func setupSections() {
-        for friend in friendsArray {
+    private func setupSearchController() {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchResultsUpdater = self
+        controller.searchBar.sizeToFit()
+        tableView.tableHeaderView = controller.searchBar
+        resultSearchController = controller
+        tableView.reloadData()
+    }
+
+    private func refreshDataForSearch() {
+        if resultSearchController.isActive {
+            setupSections(array: filteredTableData)
+        } else {
+            setupSections(array: friendsArray)
+        }
+    }
+
+    private func setupSections(array: [Friend]) {
+        sections.removeAll()
+        sectionTitles.removeAll()
+
+        for friend in array {
             guard let firstLetter = friend.name.first else { return }
             if sections[firstLetter] != nil {
                 sections[firstLetter]?.append(friend)
@@ -42,7 +65,6 @@ final class FriendsTableViewController: UITableViewController {
             }
         }
 
-        // sortedSections = sections.sorted { $0.key < $1.key }
         sectionTitles = Array(sections.keys)
     }
 
@@ -94,5 +116,24 @@ final class FriendsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
+    }
+}
+
+// MARK: UISearchResultsUpdating
+
+extension FriendsTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filteredTableData.removeAll(keepingCapacity: false)
+        guard let text = searchController.searchBar.text else { return }
+
+        if !text.isEmpty {
+            let array = friendsArray.filter { $0.name.contains(text) }
+            filteredTableData = array
+        } else {
+            filteredTableData = friendsArray
+        }
+
+        refreshDataForSearch()
+        tableView.reloadData()
     }
 }
