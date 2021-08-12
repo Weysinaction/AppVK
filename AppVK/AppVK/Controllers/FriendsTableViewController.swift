@@ -9,6 +9,7 @@ final class FriendsTableViewController: UITableViewController {
 
     private var friendsArray: [Friend] = []
     private var friendsCellID = "FriendsCell"
+    private var segueID = "DetailSegue"
     private var sections: [Character: [Friend]] = [:]
     private var sortedSections: [(Character, [Friend])] = []
     private var sectionTitles: [Character] = []
@@ -68,6 +69,19 @@ final class FriendsTableViewController: UITableViewController {
         sectionTitles = Array(sections.keys)
     }
 
+    private func addAnimation() -> CASpringAnimation {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0.5
+        animation.toValue = 1
+        animation.stiffness = 200
+        animation.mass = 2
+        animation.duration = 2
+        animation.beginTime = CACurrentMediaTime()
+        animation.fillMode = CAMediaTimingFillMode.backwards
+
+        return animation
+    }
+
     private func setupData() {
         friendsArray.append(Friend(name: "Homer Simpson", description: "Springfield", imageName: "homer"))
         friendsArray.append(Friend(name: "Apu", description: "Springfield", imageName: "apu"))
@@ -112,6 +126,16 @@ final class FriendsTableViewController: UITableViewController {
         cell.profileImageView.imageView.image = image
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? FriendsTableViewCell else { return }
+
+        cell.profileImageView.layer.add(addAnimation(), forKey: nil)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.performSegue(withIdentifier: self.segueID, sender: cell)
+        }
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -28,6 +28,21 @@ final class GroupsTableViewCell: UITableViewCell {
         setupViews()
     }
 
+    // MARK: public methods
+
+    func addAnimation() {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.stiffness = 200
+        animation.mass = 2
+        animation.duration = 1.5
+        animation.beginTime = CACurrentMediaTime()
+        animation.fillMode = CAMediaTimingFillMode.backwards
+
+        groupImageView.layer.add(animation, forKey: nil)
+    }
+
     // MARK: private methods
 
     private func setupViews() {

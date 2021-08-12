@@ -28,6 +28,8 @@ class LikeControl: UIControl {
         setupButton()
     }
 
+    private func likeAnimation(title: String) {}
+
     private func setupButton() {
         buttonLike.setImage(UIImage(systemName: "heart"), for: .normal)
         buttonLike.setImage(UIImage(systemName: "heart.fill"), for: .selected)
@@ -47,14 +49,18 @@ class LikeControl: UIControl {
     @objc private func buttonTapped() {
         if buttonLike.isSelected {
             countOfLikes -= 1
-            buttonLike.tintColor = .lightGray
-            buttonLike.setTitle(String(countOfLikes), for: .normal)
-            buttonLike.isSelected = false
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveLinear) {
+                self.buttonLike.tintColor = .lightGray
+                self.buttonLike.setTitle(String(self.countOfLikes), for: .normal)
+                self.buttonLike.isSelected = false
+            }
         } else {
             countOfLikes += 1
-            buttonLike.tintColor = .red
-            buttonLike.setTitle(String(countOfLikes), for: .selected)
-            buttonLike.isSelected = true
+            UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear) {
+                self.buttonLike.tintColor = .red
+                self.buttonLike.setTitle(String(self.countOfLikes), for: .selected)
+                self.buttonLike.isSelected = true
+            }
         }
     }
 }
