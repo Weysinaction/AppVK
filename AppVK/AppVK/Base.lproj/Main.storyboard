@@ -254,7 +254,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="0EF-S2-wZj"/>
                     <connections>
-                        <segue destination="Mdr-Is-WWe" kind="show" identifier="DetailSegue" id="fAw-nw-psm"/>
+                        <segue destination="UMd-qf-HzQ" kind="show" identifier="DetailSegue" id="l76-yh-UcW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NsF-cG-1I9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -266,7 +266,7 @@
             <objects>
                 <collectionViewController id="Mdr-Is-WWe" customClass="DetailCollectionViewController" customModule="AppVK" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="BHD-Qy-l2p">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Q59-h5-i1n">
@@ -324,6 +324,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="08k-0j-Bik" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5376.811594202899" y="-279.24107142857139"/>
+        </scene>
+        <!--Detail Anim View Controller-->
+        <scene sceneID="l1Z-dx-cPg">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="UMd-qf-HzQ" customClass="DetailAnimViewController" customModule="AppVK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5YQ-EQ-8Tb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ylg-CC-1NC">
+                                <rect key="frame" x="57" y="271" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ylg-CC-1NC" secondAttribute="height" multiplier="1:1" id="ILT-Z5-DAs"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Zwk-HD-XX8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ylg-CC-1NC" firstAttribute="top" secondItem="Zwk-HD-XX8" secondAttribute="top" constant="215" id="7ZC-Wk-a6h"/>
+                            <constraint firstItem="Zwk-HD-XX8" firstAttribute="trailing" secondItem="Ylg-CC-1NC" secondAttribute="trailing" constant="57" id="ULV-pA-69V"/>
+                            <constraint firstItem="Ylg-CC-1NC" firstAttribute="leading" secondItem="Zwk-HD-XX8" secondAttribute="leading" constant="57" id="UwT-0H-9Ac"/>
+                            <constraint firstItem="Zwk-HD-XX8" firstAttribute="bottom" secondItem="Ylg-CC-1NC" secondAttribute="bottom" constant="188" id="eIm-lG-aiu"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="JAH-Xa-OEL"/>
+                    <connections>
+                        <outlet property="photoImageView" destination="Ylg-CC-1NC" id="QJP-3N-4Kk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gSL-Ma-OSU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6181" y="-279"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="dAo-be-p7h">
