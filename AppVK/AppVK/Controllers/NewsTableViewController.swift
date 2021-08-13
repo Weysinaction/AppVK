@@ -5,11 +5,13 @@ import UIKit
 
 /// NewsTableViewController-
 final class NewsTableViewController: UITableViewController {
-    //MARK: private properties
+    // MARK: private properties
+
     private var cellID = "newsCell"
     private var newsArray: [News] = []
 
-    //MARK: NewsTableViewController
+    // MARK: NewsTableViewController
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupData()

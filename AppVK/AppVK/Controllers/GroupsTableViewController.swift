@@ -101,4 +101,9 @@ final class GroupsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? GroupsTableViewCell else { return }
+        cell.addAnimation()
+    }
 }

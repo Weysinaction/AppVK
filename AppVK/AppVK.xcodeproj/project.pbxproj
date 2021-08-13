@@ -29,6 +29,8 @@
 		E02FF08A26C4230700E3C2E4 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF08926C4230600E3C2E4 /* NewsTableViewController.swift */; };
 		E02FF08C26C42D6A00E3C2E4 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF08B26C42D6A00E3C2E4 /* NewsTableViewCell.swift */; };
 		E02FF08E26C4328F00E3C2E4 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF08D26C4328F00E3C2E4 /* News.swift */; };
+		E02FF09026C56CE800E3C2E4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF08F26C56CE700E3C2E4 /* TabBarController.swift */; };
+		E02FF09226C6A9B700E3C2E4 /* DetailAnimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF09126C6A9B600E3C2E4 /* DetailAnimViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		E02FF08926C4230600E3C2E4 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		E02FF08B26C42D6A00E3C2E4 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		E02FF08D26C4328F00E3C2E4 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		E02FF08F26C56CE700E3C2E4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E02FF09126C6A9B600E3C2E4 /* DetailAnimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAnimViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +133,6 @@
 			children = (
 				E02FF03B26BB268500E3C2E4 /* AppDelegate.swift */,
 				E02FF03D26BB268500E3C2E4 /* SceneDelegate.swift */,
-				E02FF03F26BB268500E3C2E4 /* ViewController.swift */,
 				E02FF08126C2B39400E3C2E4 /* Controllers */,
 				E02FF08226C2B3AE00E3C2E4 /* Cells */,
 				E02FF08326C2B3CF00E3C2E4 /* Models */,
@@ -163,7 +166,10 @@
 		E02FF08126C2B39400E3C2E4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E02FF08F26C56CE700E3C2E4 /* TabBarController.swift */,
+				E02FF03F26BB268500E3C2E4 /* ViewController.swift */,
 				E02FF06D26BCA25700E3C2E4 /* FriendsTableViewController.swift */,
+				E02FF09126C6A9B600E3C2E4 /* DetailAnimViewController.swift */,
 				E02FF07326BCB24700E3C2E4 /* DetailCollectionViewController.swift */,
 				E02FF06F26BCA2F700E3C2E4 /* GroupsTableViewController.swift */,
 				E02FF08926C4230600E3C2E4 /* NewsTableViewController.swift */,
@@ -376,6 +382,7 @@
 				E02FF07C26C27EFC00E3C2E4 /* Group.swift in Sources */,
 				E02FF04026BB268500E3C2E4 /* ViewController.swift in Sources */,
 				E02FF08C26C42D6A00E3C2E4 /* NewsTableViewCell.swift in Sources */,
+				E02FF09026C56CE800E3C2E4 /* TabBarController.swift in Sources */,
 				E02FF08826C30D7100E3C2E4 /* LikeControl.swift in Sources */,
 				E02FF07E26C287D400E3C2E4 /* GradientView.swift in Sources */,
 				E02FF07426BCB24700E3C2E4 /* DetailCollectionViewController.swift in Sources */,
@@ -388,6 +395,7 @@
 				E02FF07226BCB18C00E3C2E4 /* FriendsTableViewCell.swift in Sources */,
 				E02FF07826BCB79A00E3C2E4 /* Friend.swift in Sources */,
 				E02FF06E26BCA25800E3C2E4 /* FriendsTableViewController.swift in Sources */,
+				E02FF09226C6A9B700E3C2E4 /* DetailAnimViewController.swift in Sources */,
 				E02FF08E26C4328F00E3C2E4 /* News.swift in Sources */,
 				E02FF03E26BB268500E3C2E4 /* SceneDelegate.swift in Sources */,
 			);
