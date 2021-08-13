@@ -4,4 +4,4 @@
 import UIKit
 
 /// TabBarController-
-class TabBarController: UITabBarController {}
+final class TabBarController: UITabBarController {}

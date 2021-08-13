@@ -3,8 +3,8 @@
 
 import UIKit
 
-/// DetailAnimViewController-
-class DetailAnimViewController: UIViewController {
+/// DetailAnimViewController
+final class DetailAnimViewController: UIViewController {
     // MARK: IBOutlet
 
     @IBOutlet private var photoImageView: UIImageView!
@@ -65,13 +65,6 @@ class DetailAnimViewController: UIViewController {
             translationX = +400
         }
 
-//        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn) {
-//            self.photoImageView.transform = CGAffineTransform(translationX: translationX, y: 0)
-//        } completion: { _ in
-//            self.photoImageView.transform = .identity
-//            self.photoImageView.image = self.photoArray[currentImageIndex]
-//        }
-
         UIView.animateKeyframes(withDuration: 1, delay: 0, options: []) {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1) {
                 self.photoImageView.transform = CGAffineTransform(translationX: translationX, y: 0)
@@ -87,17 +80,6 @@ class DetailAnimViewController: UIViewController {
                 self.photoImageView.image = self.photoArray[currentImageIndex]
             }
         }
-//        let groupAnim = CAAnimationGroup()
-//        let animation = CABasicAnimation(keyPath: "position.x")
-//        animation.byValue = -400
-//        animation.duration = 1
-//
-//        let animationImage = CABasicAnimation(keyPath: "alpha")
-//        animationImage.byValue = 0
-//        animationImage.duration = 0.5
-//
-//        groupAnim.animations = [animation, animationImage]
-//        photoImageView.layer.add(groupAnim, forKey: nil)
     }
 
     private func changePhoto(sender: UISwipeGestureRecognizer) {
