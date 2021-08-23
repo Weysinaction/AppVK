@@ -31,6 +31,9 @@
 		E02FF08E26C4328F00E3C2E4 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF08D26C4328F00E3C2E4 /* News.swift */; };
 		E02FF09026C56CE800E3C2E4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF08F26C56CE700E3C2E4 /* TabBarController.swift */; };
 		E02FF09226C6A9B700E3C2E4 /* DetailAnimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF09126C6A9B600E3C2E4 /* DetailAnimViewController.swift */; };
+		E0F5F55526D2C9B70042197F /* PushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55426D2C9B70042197F /* PushAnimator.swift */; };
+		E0F5F55726D2CF6D0042197F /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55626D2CF6D0042197F /* PopAnimator.swift */; };
+		E0F5F55926D2D4000042197F /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55826D2D4000042197F /* InteractiveTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		E02FF08D26C4328F00E3C2E4 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		E02FF08F26C56CE700E3C2E4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E02FF09126C6A9B600E3C2E4 /* DetailAnimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAnimViewController.swift; sourceTree = "<group>"; };
+		E0F5F55426D2C9B70042197F /* PushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAnimator.swift; sourceTree = "<group>"; };
+		E0F5F55626D2CF6D0042197F /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
+		E0F5F55826D2D4000042197F /* InteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +139,7 @@
 			children = (
 				E02FF03B26BB268500E3C2E4 /* AppDelegate.swift */,
 				E02FF03D26BB268500E3C2E4 /* SceneDelegate.swift */,
+				E0F5F55326D2C98B0042197F /* Class */,
 				E02FF08126C2B39400E3C2E4 /* Controllers */,
 				E02FF08226C2B3AE00E3C2E4 /* Cells */,
 				E02FF08326C2B3CF00E3C2E4 /* Models */,
@@ -206,6 +213,16 @@
 				E02FF08726C30D7100E3C2E4 /* LikeControl.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E0F5F55326D2C98B0042197F /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				E0F5F55426D2C9B70042197F /* PushAnimator.swift */,
+				E0F5F55626D2CF6D0042197F /* PopAnimator.swift */,
+				E0F5F55826D2D4000042197F /* InteractiveTransition.swift */,
+			);
+			path = Class;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,8 +400,11 @@
 				E02FF04026BB268500E3C2E4 /* ViewController.swift in Sources */,
 				E02FF08C26C42D6A00E3C2E4 /* NewsTableViewCell.swift in Sources */,
 				E02FF09026C56CE800E3C2E4 /* TabBarController.swift in Sources */,
+				E0F5F55526D2C9B70042197F /* PushAnimator.swift in Sources */,
 				E02FF08826C30D7100E3C2E4 /* LikeControl.swift in Sources */,
 				E02FF07E26C287D400E3C2E4 /* GradientView.swift in Sources */,
+				E0F5F55926D2D4000042197F /* InteractiveTransition.swift in Sources */,
+				E0F5F55726D2CF6D0042197F /* PopAnimator.swift in Sources */,
 				E02FF07426BCB24700E3C2E4 /* DetailCollectionViewController.swift in Sources */,
 				E02FF08026C2B38E00E3C2E4 /* ProfileImageView.swift in Sources */,
 				E02FF07026BCA2F700E3C2E4 /* GroupsTableViewController.swift in Sources */,

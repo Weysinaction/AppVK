@@ -15,11 +15,13 @@ final class FriendsTableViewController: UITableViewController {
     private var sectionTitles: [Character] = []
     private var filteredTableData: [Friend] = []
     private var resultSearchController = UISearchController()
+    private var interactiveTransition = InteractiveTransition()
 
     // MARK: FriendsTableViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.delegate = self
         setupData()
         setupSections(array: friendsArray)
         setupSearchController()
@@ -159,5 +161,33 @@ extension FriendsTableViewController: UISearchResultsUpdating {
 
         refreshDataForSearch()
         tableView.reloadData()
+    }
+}
+
+// MARK: UINavigationControllerDelegate
+
+extension FriendsTableViewController: UINavigationControllerDelegate {
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        if operation == .pop {
+            if navigationController.viewControllers.first != toVC {
+                interactiveTransition.viewController = toVC
+            }
+            return PopAnimator()
+        } else {
+            interactiveTransition.viewController = toVC
+            return PushAnimator()
+        }
+    }
+
+    func navigationController(
+        _ navigationController: UINavigationController,
+        interactionControllerFor animationController: UIViewControllerAnimatedTransitioning
+    ) -> UIViewControllerInteractiveTransitioning? {
+        interactiveTransition.hasStarted ? interactiveTransition : nil
     }
 }
