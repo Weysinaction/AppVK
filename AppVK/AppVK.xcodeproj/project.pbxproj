@@ -34,6 +34,7 @@
 		E0F5F55526D2C9B70042197F /* PushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55426D2C9B70042197F /* PushAnimator.swift */; };
 		E0F5F55726D2CF6D0042197F /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55626D2CF6D0042197F /* PopAnimator.swift */; };
 		E0F5F55926D2D4000042197F /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55826D2D4000042197F /* InteractiveTransition.swift */; };
+		E0F5F55B26D40AD70042197F /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55A26D40AD70042197F /* UserInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		E0F5F55426D2C9B70042197F /* PushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAnimator.swift; sourceTree = "<group>"; };
 		E0F5F55626D2CF6D0042197F /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		E0F5F55826D2D4000042197F /* InteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransition.swift; sourceTree = "<group>"; };
+		E0F5F55A26D40AD70042197F /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				E0F5F55426D2C9B70042197F /* PushAnimator.swift */,
 				E0F5F55626D2CF6D0042197F /* PopAnimator.swift */,
 				E0F5F55826D2D4000042197F /* InteractiveTransition.swift */,
+				E0F5F55A26D40AD70042197F /* UserInfo.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				E02FF09026C56CE800E3C2E4 /* TabBarController.swift in Sources */,
 				E0F5F55526D2C9B70042197F /* PushAnimator.swift in Sources */,
 				E02FF08826C30D7100E3C2E4 /* LikeControl.swift in Sources */,
+				E0F5F55B26D40AD70042197F /* UserInfo.swift in Sources */,
 				E02FF07E26C287D400E3C2E4 /* GradientView.swift in Sources */,
 				E0F5F55926D2D4000042197F /* InteractiveTransition.swift in Sources */,
 				E0F5F55726D2CF6D0042197F /* PopAnimator.swift in Sources */,
