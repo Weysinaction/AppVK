@@ -1,24 +1,21 @@
-//
-//  UserInfo.swift
-//  AppVK
-//
-//  Created by Владислав Лазарев on 23.08.2021.
-//
+// UserInfo.swift
+// Copyright © RoadMap. All rights reserved.
 
 import Foundation
 
 /// UserInfo-
-class UserInfo {
+final class UserInfo {
+    // MARK: static variables
 
-//MARK: static variables
-static var userInfo: UserInfo = UserInfo()
+    static var userInfo = UserInfo()
 
-//MARK: public properties
-var id: Int = 0
-var login: String = ""
-var password: String = ""
+    // MARK: public properties
 
-//MARK: private methods
-private init() {}
-    
+    var id = 0
+    var login: String = ""
+    var password: String = ""
+
+    // MARK: private methods
+
+    private init() {}
 }
