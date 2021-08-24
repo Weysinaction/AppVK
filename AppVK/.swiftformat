@@ -12,4 +12,3 @@
 # Отключаем отступ
 --ifdef no-indent
 
---swiftversion 5.3
