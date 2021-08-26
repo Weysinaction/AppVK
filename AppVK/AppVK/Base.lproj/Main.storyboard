@@ -37,7 +37,7 @@
                     </view>
                     <connections>
                         <outlet property="wkWebView" destination="VMB-fD-UvG" id="wvg-jD-gXv"/>
-                        <segue destination="Rjy-Ii-pmR" kind="show" id="8NE-ZO-vAx"/>
+                        <segue destination="Rjy-Ii-pmR" kind="show" identifier="openMainInterface" id="8NE-ZO-vAx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFb-X3-idg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -288,7 +288,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="0EF-S2-wZj"/>
                     <connections>
-                        <segue destination="UMd-qf-HzQ" kind="show" identifier="DetailSegue" id="l76-yh-UcW"/>
+                        <segue destination="UMd-qf-HzQ" kind="show" identifier="DetailSegue" id="Lj2-x9-uzX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NsF-cG-1I9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -8,11 +8,11 @@ final class GroupsTableViewController: UITableViewController {
     private var cellID = "groupCell"
     private var groupsArray: [Group] = []
     private var allGroupsArray: [Group] = []
+    private var service = APIService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupAllGroupsData()
         setupGroupsData()
     }
 
@@ -20,37 +20,32 @@ final class GroupsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? GroupsTableViewCell
         else { return UITableViewCell() }
 
-        cell.imageName = groupsArray[indexPath.row].imageName
+        cell.imageURL = groupsArray[indexPath.row].imageURL
         cell.title = groupsArray[indexPath.row].title
         cell.subTitle = groupsArray[indexPath.row].subTitle
 
         return cell
     }
 
-    private func setupAllGroupsData() {
-        allGroupsArray
-            .append(Group(imageName: "springfield", title: "Подслушано в Springfield", subTitle: "Городские сплетни"))
-        allGroupsArray
-            .append(Group(
-                imageName: "police",
-                title: "Springfield Police",
-                subTitle: "Полицейский департамент"
-            ))
-        allGroupsArray
-            .append(Group(imageName: "school", title: "Springfield School", subTitle: "Школа Спрингфилда"))
+    private func getData(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+
+    private func downloadImage(url: URL, imageView: ProfileImageView) {
+        getData(url: url) { data, _, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async {
+                imageView.imageView.image = UIImage(data: data)
+            }
+        }
     }
 
     private func setupGroupsData() {
-        guard let group = allGroupsArray.first else { return }
-        groupsArray.append(group)
-        groupsArray.append(group)
-
-        guard let groupTwo = allGroupsArray.last else { return }
-        groupsArray.append(groupTwo)
-        groupsArray.append(groupTwo)
-        groupsArray.append(group)
-        groupsArray.append(group)
-        groupsArray.append(groupTwo)
+        service.getGroups()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.groupsArray = self.service.groupsArray
+            self.tableView.reloadData()
+        }
     }
 
     private func addGroup(name: String) {

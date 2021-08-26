@@ -4,8 +4,15 @@
 import Foundation
 
 /// Friend-
-struct Friend {
+struct Friend: Codable {
     let name: String
-    let description: String
-    let imageName: String
+    let id: Int
+    let imageURL: String
+    let city: String
+}
+
+/// City-
+struct City: Codable {
+    var id: Int
+    var title: String
 }

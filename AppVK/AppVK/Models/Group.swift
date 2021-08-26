@@ -5,7 +5,7 @@ import Foundation
 
 /// Group-
 struct Group {
-    var imageName: String
+    var imageURL: String
     var title: String
     var subTitle: String
 }

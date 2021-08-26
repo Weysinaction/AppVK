@@ -6,31 +6,35 @@ import WebKit
 
 /// WebViewController-
 final class WebViewController: UIViewController {
-    //MARK: IBOutlet
+    // MARK: IBOutlet
+
     @IBOutlet var wkWebView: WKWebView! {
         didSet {
             wkWebView.navigationDelegate = self
         }
     }
 
-    //MARK: private peroperties
+    // MARK: private peroperties
+
     private var service = APIService()
 
-    //MARK: WebViewController
+    // MARK: WebViewController
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         loadStartPage()
     }
 
-    //MARK: private methods
+    // MARK: private methods
+
     private func loadStartPage() {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
         urlComponents.path = "/authorize"
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: "7935608"),
+            URLQueryItem(name: "client_id", value: "7936587"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "scope", value: "262150"),
@@ -45,7 +49,8 @@ final class WebViewController: UIViewController {
     }
 }
 
-//MARK: WKNavigationDelegate
+// MARK: WKNavigationDelegate
+
 extension WebViewController: WKNavigationDelegate {
     func webView(
         _ webView: WKWebView,
@@ -71,8 +76,13 @@ extension WebViewController: WKNavigationDelegate {
         guard let token = params["access_token"] else { return }
         guard let userID = params["user_id"] else { return }
 
+        print(token)
+        print(userID)
+
         UserInfo.userInfo.token = token
         UserInfo.userInfo.userID = userID
+
+        performSegue(withIdentifier: "openMainInterface", sender: nil)
 
         decisionHandler(.cancel)
     }

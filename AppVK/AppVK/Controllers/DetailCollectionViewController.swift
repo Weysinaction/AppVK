@@ -8,11 +8,19 @@ final class DetailCollectionViewController: UICollectionViewController {
     // MARK: private properties
 
     private let detailCellID = "DetailCell"
+    private let service = APIService()
 
     // MARK: public properties
 
     var name = ""
     var imageName = ""
+    var id = 0
+
+    // MARK: DetailCollectionViewController
+
+    override func viewDidLoad() {
+        service.getPhotos(ownerID: id)
+    }
 
     // MARK: UICollectionViewDataSource
 

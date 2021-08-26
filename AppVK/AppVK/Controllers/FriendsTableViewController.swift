@@ -16,6 +16,7 @@ final class FriendsTableViewController: UITableViewController {
     private var filteredTableData: [Friend] = []
     private var resultSearchController = UISearchController()
     private var interactiveTransition = InteractiveTransition()
+    private var service = APIService()
 
     // MARK: FriendsTableViewController
 
@@ -29,11 +30,11 @@ final class FriendsTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "DetailSegue" else { return }
-        guard let destination = segue.destination as? DetailCollectionViewController,
+        guard let destination = segue.destination as? DetailAnimViewController,
               let indexPath = tableView.indexPathForSelectedRow else { return }
         guard let friendsForSection = sections[sectionTitles[indexPath.section]] else { return }
         destination.name = friendsForSection[indexPath.row].name
-        destination.imageName = friendsForSection[indexPath.row].imageName
+        destination.id = friendsForSection[indexPath.row].id
     }
 
     // MARK: private methods
@@ -85,15 +86,25 @@ final class FriendsTableViewController: UITableViewController {
     }
 
     private func setupData() {
-        friendsArray.append(Friend(name: "Homer Simpson", description: "Springfield", imageName: "homer"))
-        friendsArray.append(Friend(name: "Apu", description: "Springfield", imageName: "apu"))
-        friendsArray.append(Friend(name: "Bart Simpson", description: "Springfield", imageName: "bart"))
-        friendsArray.append(Friend(name: "Marge Simpson", description: "Springfield", imageName: "marge"))
-        friendsArray.append(Friend(name: "Lisa Simpson", description: "Springfield", imageName: "lisa"))
-        friendsArray.append(Friend(name: "Maggie Simpson", description: "Springfield", imageName: "maggie"))
-        friendsArray.append(Friend(name: "Flanders", description: "Springfield", imageName: "flanders"))
-        friendsArray.append(Friend(name: "Homer Simpson", description: "Springfield", imageName: "homer"))
-        friendsArray.append(Friend(name: "Homer Simpson", description: "Springfield", imageName: "homer"))
+        service.getFriends()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.setupSections(array: self.service.friendsArray)
+            self.tableView.reloadData()
+            print("data reloaded + \(self.friendsArray)")
+        }
+    }
+
+    private func getData(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+
+    private func downloadImage(url: URL, imageView: ProfileImageView) {
+        getData(url: url) { data, _, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async {
+                imageView.imageView.image = UIImage(data: data)
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -120,12 +131,13 @@ final class FriendsTableViewController: UITableViewController {
 
         guard let currentItem = sections[sectionTitles[indexPath.section]] else { return UITableViewCell() }
 
-        cell.nameLabel.text = currentItem[indexPath.row].name
-        cell.descriptionLabel.text = currentItem[indexPath.row].description
+        cell.nameLabel.text = "\(currentItem[indexPath.row].name)"
+        cell.descriptionLabel.text = currentItem[indexPath.row].city
 
-        guard let image = UIImage(named: currentItem[indexPath.row].imageName) else { return UITableViewCell() }
+        guard let url = URL(string: currentItem[indexPath.row].imageURL),
+              let imageView = cell.profileImageView else { return UITableViewCell() }
 
-        cell.profileImageView.imageView.image = image
+        downloadImage(url: url, imageView: imageView)
 
         return cell
     }
