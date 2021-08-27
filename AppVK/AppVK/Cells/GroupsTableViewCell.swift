@@ -17,7 +17,7 @@ final class GroupsTableViewCell: UITableViewCell {
 
     // MARK: public properties
 
-    var imageName: String = ""
+    var imageURL: String = ""
     var title: String = ""
     var subTitle: String = ""
 
@@ -45,12 +45,25 @@ final class GroupsTableViewCell: UITableViewCell {
 
     // MARK: private methods
 
+    private func getData(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+
+    private func downloadImage(url: URL, imageView: UIImageView) {
+        getData(url: url) { data, _, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async {
+                imageView.image = UIImage(data: data)
+            }
+        }
+    }
+
     private func setupViews() {
         groupTitleLabel.text = title
         groupSubTitleLabel.text = subTitle
-        guard let image = UIImage(named: imageName) else { return }
-        groupImageView.image = image
 
+        guard let url = URL(string: imageURL) else { return }
+        downloadImage(url: url, imageView: groupImageView)
         setupImageView()
     }
 

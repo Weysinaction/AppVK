@@ -12,8 +12,8 @@ final class UserInfo {
     // MARK: public properties
 
     var id = 0
-    var login: String = ""
-    var password: String = ""
+    var userID: String = ""
+    var token: String = ""
 
     // MARK: private methods
 
