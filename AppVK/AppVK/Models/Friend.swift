@@ -10,9 +10,3 @@ struct Friend: Codable {
     let imageURL: String
     let city: String
 }
-
-/// City-
-struct City: Codable {
-    var id: Int
-    var title: String
-}

@@ -17,6 +17,8 @@ final class APIService {
 
     private let userID = UserInfo.userInfo.userID
     private let token = UserInfo.userInfo.token
+    private let friendsService = FriendsService()
+    private let groupsService = GroupsService()
 
     // MARK: public methods
 
@@ -76,8 +78,9 @@ final class APIService {
         AF.request(urlPath).responseData { _ in
         }
     }
-    
-    //MARK: private methods
+
+    // MARK: private methods
+
     private func addFriends(array: [JSON]) {
         for value in array {
             let firstName = value["first_name"].string ?? ""
@@ -89,7 +92,7 @@ final class APIService {
             friendsArray.append(Friend(name: firstName + " " + lastName, id: id, imageURL: imageURL, city: city))
         }
     }
-    
+
     private func addPhotos(array: [JSON]) {
         for object in array {
             let sizes = object["sizes"].arrayValue.map {
@@ -98,7 +101,7 @@ final class APIService {
             photosArray.append(sizes.last ?? "")
         }
     }
-    
+
     private func addGroups(array: [JSON]) {
         for value in array {
             let imageURL = value["photo_200"].string ?? ""
@@ -108,5 +111,4 @@ final class APIService {
             groupsArray.append(Group(imageURL: imageURL, title: title, subTitle: subTitle))
         }
     }
-    
 }
