@@ -33,9 +33,13 @@
 		E02FF08E26C4328F00E3C2E4 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF08D26C4328F00E3C2E4 /* News.swift */; };
 		E02FF09026C56CE800E3C2E4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF08F26C56CE700E3C2E4 /* TabBarController.swift */; };
 		E02FF09226C6A9B700E3C2E4 /* DetailAnimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FF09126C6A9B600E3C2E4 /* DetailAnimViewController.swift */; };
+		E086A61F26D9514A002EC149 /* GroupRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A61E26D9514A002EC149 /* GroupRealm.swift */; };
+		E086A62126D954D9002EC149 /* FriendsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A62026D954D9002EC149 /* FriendsService.swift */; };
+		E086A62326D954E7002EC149 /* GroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A62226D954E7002EC149 /* GroupsService.swift */; };
 		E08B70CA26D5BF5A00229C89 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B70C926D5BF5A00229C89 /* WebViewController.swift */; };
 		E08B70CC26D6B87900229C89 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B70CB26D6B87900229C89 /* APIService.swift */; };
 		E08B70CE26D7BE8800229C89 /* FriendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B70CD26D7BE8800229C89 /* FriendResponse.swift */; };
+		E0A10D0126D9484A003F0E1D /* FriendRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A10D0026D9484A003F0E1D /* FriendRealm.swift */; };
 		E0F5F55526D2C9B70042197F /* PushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55426D2C9B70042197F /* PushAnimator.swift */; };
 		E0F5F55726D2CF6D0042197F /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55626D2CF6D0042197F /* PopAnimator.swift */; };
 		E0F5F55926D2D4000042197F /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5F55826D2D4000042197F /* InteractiveTransition.swift */; };
@@ -100,9 +104,13 @@
 		E02FF08D26C4328F00E3C2E4 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		E02FF08F26C56CE700E3C2E4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E02FF09126C6A9B600E3C2E4 /* DetailAnimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAnimViewController.swift; sourceTree = "<group>"; };
+		E086A61E26D9514A002EC149 /* GroupRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRealm.swift; sourceTree = "<group>"; };
+		E086A62026D954D9002EC149 /* FriendsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsService.swift; sourceTree = "<group>"; };
+		E086A62226D954E7002EC149 /* GroupsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsService.swift; sourceTree = "<group>"; };
 		E08B70C926D5BF5A00229C89 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E08B70CB26D6B87900229C89 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		E08B70CD26D7BE8800229C89 /* FriendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendResponse.swift; sourceTree = "<group>"; };
+		E0A10D0026D9484A003F0E1D /* FriendRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRealm.swift; sourceTree = "<group>"; };
 		E0F5F55426D2C9B70042197F /* PushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAnimator.swift; sourceTree = "<group>"; };
 		E0F5F55626D2CF6D0042197F /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		E0F5F55826D2D4000042197F /* InteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransition.swift; sourceTree = "<group>"; };
@@ -248,6 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				E02FF07726BCB79A00E3C2E4 /* Friend.swift */,
+				E0A10D0026D9484A003F0E1D /* FriendRealm.swift */,
+				E086A61E26D9514A002EC149 /* GroupRealm.swift */,
 				E02FF07B26C27EFC00E3C2E4 /* Group.swift */,
 				E02FF08D26C4328F00E3C2E4 /* News.swift */,
 				E08B70CD26D7BE8800229C89 /* FriendResponse.swift */,
@@ -273,6 +283,8 @@
 				E0F5F55826D2D4000042197F /* InteractiveTransition.swift */,
 				E0F5F55C26D40E990042197F /* UserInfo.swift */,
 				E08B70CB26D6B87900229C89 /* APIService.swift */,
+				E086A62026D954D9002EC149 /* FriendsService.swift */,
+				E086A62226D954E7002EC149 /* GroupsService.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -554,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E02FF07C26C27EFC00E3C2E4 /* Group.swift in Sources */,
+				E086A62326D954E7002EC149 /* GroupsService.swift in Sources */,
 				E08B70CC26D6B87900229C89 /* APIService.swift in Sources */,
 				E02FF04026BB268500E3C2E4 /* ViewController.swift in Sources */,
 				E02FF08C26C42D6A00E3C2E4 /* NewsTableViewCell.swift in Sources */,
@@ -570,10 +583,13 @@
 				E02FF08026C2B38E00E3C2E4 /* ProfileImageView.swift in Sources */,
 				E02FF07026BCA2F700E3C2E4 /* GroupsTableViewController.swift in Sources */,
 				E02FF07626BCB25800E3C2E4 /* DetailCollectionViewCell.swift in Sources */,
+				E086A62126D954D9002EC149 /* FriendsService.swift in Sources */,
+				E086A61F26D9514A002EC149 /* GroupRealm.swift in Sources */,
 				E02FF08A26C4230700E3C2E4 /* NewsTableViewController.swift in Sources */,
 				E02FF03C26BB268500E3C2E4 /* AppDelegate.swift in Sources */,
 				E02FF07A26C27E4300E3C2E4 /* GroupsTableViewCell.swift in Sources */,
 				E02FF07226BCB18C00E3C2E4 /* FriendsTableViewCell.swift in Sources */,
+				E0A10D0126D9484A003F0E1D /* FriendRealm.swift in Sources */,
 				E02FF07826BCB79A00E3C2E4 /* Friend.swift in Sources */,
 				E02FF06E26BCA25800E3C2E4 /* FriendsTableViewController.swift in Sources */,
 				E02FF09226C6A9B700E3C2E4 /* DetailAnimViewController.swift in Sources */,
