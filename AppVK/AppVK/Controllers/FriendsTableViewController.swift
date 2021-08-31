@@ -1,6 +1,7 @@
 // FriendsTableViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
+import RealmSwift
 import UIKit
 
 /// FriendsTableViewController-
@@ -8,12 +9,13 @@ final class FriendsTableViewController: UITableViewController {
     // MARK: private properties
 
     private var friendsArray: [Friend] = []
+    private var friendsRealmArray: [FriendRealm] = []
     private var friendsCellID = "FriendsCell"
     private var segueID = "DetailSegue"
-    private var sections: [Character: [Friend]] = [:]
-    private var sortedSections: [(Character, [Friend])] = []
+    private var sections: [Character: [FriendRealm]] = [:]
+    private var sortedSections: [(Character, [FriendRealm])] = []
     private var sectionTitles: [Character] = []
-    private var filteredTableData: [Friend] = []
+    private var filteredTableData: [FriendRealm] = []
     private var resultSearchController = UISearchController()
     private var interactiveTransition = InteractiveTransition()
     private var service = APIService()
@@ -24,7 +26,6 @@ final class FriendsTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationController?.delegate = self
         setupData()
-        setupSections(array: friendsArray)
         setupSearchController()
     }
 
@@ -52,11 +53,11 @@ final class FriendsTableViewController: UITableViewController {
         if resultSearchController.isActive {
             setupSections(array: filteredTableData)
         } else {
-            setupSections(array: friendsArray)
+            setupSections(array: friendsRealmArray)
         }
     }
 
-    private func setupSections(array: [Friend]) {
+    private func setupSections(array: [FriendRealm]) {
         sections.removeAll()
         sectionTitles.removeAll()
 
@@ -86,11 +87,21 @@ final class FriendsTableViewController: UITableViewController {
     }
 
     private func setupData() {
-        service.getFriends()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.setupSections(array: self.service.friendsArray)
-            self.tableView.reloadData()
-            print("data reloaded + \(self.friendsArray)")
+        service.getFriends { [weak self] in
+            self?.loadFromRealm()
+            guard let array = self?.friendsRealmArray else { return }
+            self?.setupSections(array: array)
+            self?.tableView.reloadData()
+        }
+    }
+
+    private func loadFromRealm() {
+        do {
+            let realm = try Realm()
+            let friends = realm.objects(FriendRealm.self)
+            friendsRealmArray = Array(friends)
+        } catch {
+            print(error)
         }
     }
 
@@ -165,10 +176,10 @@ extension FriendsTableViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else { return }
 
         if !text.isEmpty {
-            let array = friendsArray.filter { $0.name.contains(text) }
+            let array = friendsRealmArray.filter { $0.name.contains(text) }
             filteredTableData = array
         } else {
-            filteredTableData = friendsArray
+            filteredTableData = friendsRealmArray
         }
 
         refreshDataForSearch()

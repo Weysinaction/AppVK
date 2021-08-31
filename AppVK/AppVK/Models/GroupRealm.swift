@@ -7,8 +7,7 @@ import RealmSwift
 final class GroupRealm: Object, Decodable {
     // MARK: public properties
 
-    @objc dynamic var name = ""
-    @objc dynamic var id = 0
-    @objc dynamic var imageURL = ""
-    @objc dynamic var city = ""
+    @objc dynamic var imageURL: String
+    @objc dynamic var title: String
+    @objc dynamic var subTitle: String
 }

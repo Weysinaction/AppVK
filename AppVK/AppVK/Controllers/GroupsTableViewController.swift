@@ -1,12 +1,13 @@
 // GroupsTableViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
+import RealmSwift
 import UIKit
 
 /// GroupsTableViewController-
 final class GroupsTableViewController: UITableViewController {
     private var cellID = "groupCell"
-    private var groupsArray: [Group] = []
+    private var groupsArray: [GroupRealm] = []
     private var allGroupsArray: [Group] = []
     private var service = APIService()
 
@@ -41,15 +42,24 @@ final class GroupsTableViewController: UITableViewController {
     }
 
     private func setupGroupsData() {
-        service.getGroups()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.groupsArray = self.service.groupsArray
-            self.tableView.reloadData()
+        service.getGroups { [weak self] in
+            self?.loadFromRealm()
+            self?.tableView.reloadData()
+        }
+    }
+
+    private func loadFromRealm() {
+        do {
+            let realm = try Realm()
+            let groups = realm.objects(GroupRealm.self)
+            groupsArray = Array(groups)
+        } catch {
+            print(error)
         }
     }
 
     private func addGroup(name: String) {
-        for group in allGroupsArray where group.title == name {
+        for group in groupsArray where group.title == name {
             groupsArray.append(group)
         }
         tableView.reloadData()
