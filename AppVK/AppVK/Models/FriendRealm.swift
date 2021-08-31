@@ -11,4 +11,8 @@ final class FriendRealm: Object, Decodable {
     @objc dynamic var id = 0
     @objc dynamic var imageURL = ""
     @objc dynamic var city = ""
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

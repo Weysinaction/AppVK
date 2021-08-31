@@ -36,6 +36,7 @@
 		E086A61F26D9514A002EC149 /* GroupRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A61E26D9514A002EC149 /* GroupRealm.swift */; };
 		E086A62126D954D9002EC149 /* FriendsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A62026D954D9002EC149 /* FriendsService.swift */; };
 		E086A62326D954E7002EC149 /* GroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A62226D954E7002EC149 /* GroupsService.swift */; };
+		E086A62526DE3C3F002EC149 /* PhotoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A62426DE3C3F002EC149 /* PhotoRealm.swift */; };
 		E08B70CA26D5BF5A00229C89 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B70C926D5BF5A00229C89 /* WebViewController.swift */; };
 		E08B70CC26D6B87900229C89 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B70CB26D6B87900229C89 /* APIService.swift */; };
 		E08B70CE26D7BE8800229C89 /* FriendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B70CD26D7BE8800229C89 /* FriendResponse.swift */; };
@@ -107,6 +108,7 @@
 		E086A61E26D9514A002EC149 /* GroupRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRealm.swift; sourceTree = "<group>"; };
 		E086A62026D954D9002EC149 /* FriendsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsService.swift; sourceTree = "<group>"; };
 		E086A62226D954E7002EC149 /* GroupsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsService.swift; sourceTree = "<group>"; };
+		E086A62426DE3C3F002EC149 /* PhotoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRealm.swift; sourceTree = "<group>"; };
 		E08B70C926D5BF5A00229C89 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E08B70CB26D6B87900229C89 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		E08B70CD26D7BE8800229C89 /* FriendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendResponse.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				E02FF07B26C27EFC00E3C2E4 /* Group.swift */,
 				E02FF08D26C4328F00E3C2E4 /* News.swift */,
 				E08B70CD26D7BE8800229C89 /* FriendResponse.swift */,
+				E086A62426DE3C3F002EC149 /* PhotoRealm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				E02FF06E26BCA25800E3C2E4 /* FriendsTableViewController.swift in Sources */,
 				E02FF09226C6A9B700E3C2E4 /* DetailAnimViewController.swift in Sources */,
 				E02FF08E26C4328F00E3C2E4 /* News.swift in Sources */,
+				E086A62526DE3C3F002EC149 /* PhotoRealm.swift in Sources */,
 				E02FF03E26BB268500E3C2E4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

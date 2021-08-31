@@ -1,6 +1,7 @@
 // DetailAnimViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
+import RealmSwift
 import UIKit
 
 /// DetailAnimViewController
@@ -11,7 +12,7 @@ final class DetailAnimViewController: UIViewController {
 
     // MARK: private properties
 
-    private var photoUrlArray: [String] = []
+    private var photoRealmArray: [PhotoRealm] = []
     private var photoArray: [UIImage] = []
     private var leftSwipeRecognizer = UISwipeGestureRecognizer()
     private var rightSwipeRecognizer = UISwipeGestureRecognizer()
@@ -55,16 +56,25 @@ final class DetailAnimViewController: UIViewController {
     }
 
     private func setupData() {
-        service.getPhotos(ownerID: id)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.photoUrlArray = self.service.photosArray
-            self.downloadImages()
+        service.getPhotos(ownerID: id) { [weak self] in
+            self?.loadFromRealm()
+            self?.downloadImages()
+        }
+    }
+
+    private func loadFromRealm() {
+        do {
+            let realm = try Realm()
+            let photos = realm.objects(PhotoRealm.self)
+            photoRealmArray = Array(photos)
+        } catch {
+            print(error)
         }
     }
 
     private func downloadImages() {
-        for url in photoUrlArray {
-            guard let photoURL = URL(string: url) else { return }
+        for photo in photoRealmArray {
+            guard let photoURL = URL(string: photo.photoURL) else { return }
             downloadImage(url: photoURL)
         }
     }

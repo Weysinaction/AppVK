@@ -9,6 +9,7 @@ final class DetailCollectionViewController: UICollectionViewController {
 
     private let detailCellID = "DetailCell"
     private let service = APIService()
+    private var photosArray: [String] = []
 
     // MARK: public properties
 
@@ -17,10 +18,6 @@ final class DetailCollectionViewController: UICollectionViewController {
     var id = 0
 
     // MARK: DetailCollectionViewController
-
-    override func viewDidLoad() {
-        service.getPhotos(ownerID: id)
-    }
 
     // MARK: UICollectionViewDataSource
 
