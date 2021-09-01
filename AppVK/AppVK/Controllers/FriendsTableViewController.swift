@@ -19,6 +19,7 @@ final class FriendsTableViewController: UITableViewController {
     private var resultSearchController = UISearchController()
     private var interactiveTransition = InteractiveTransition()
     private var service = APIService()
+    private var tokenFriend: NotificationToken?
 
     // MARK: FriendsTableViewController
 
@@ -87,21 +88,35 @@ final class FriendsTableViewController: UITableViewController {
     }
 
     private func setupData() {
-        service.getFriends { [weak self] in
-            self?.loadFromRealm()
-            guard let array = self?.friendsRealmArray else { return }
-            self?.setupSections(array: array)
-            self?.tableView.reloadData()
-        }
+        service.getFriends()
+        loadFromRealm()
+        tableView.reloadData()
     }
 
     private func loadFromRealm() {
         do {
             let realm = try Realm()
             let friends = realm.objects(FriendRealm.self)
+            pairTableAndRealm()
             friendsRealmArray = Array(friends)
+            setupSections(array: friendsRealmArray)
         } catch {
             print(error)
+        }
+    }
+
+    private func pairTableAndRealm() {
+        guard let realm = try? Realm() else { return }
+        let friends = realm.objects(FriendRealm.self)
+        tokenFriend = friends.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case let .initial(result):
+                self?.friendsRealmArray = Array(result)
+            case let .update(result, deletions: _, insertions: _, modifications: _):
+                self?.friendsRealmArray = Array(result)
+            case let .error(error):
+                fatalError("\(error)")
+            }
         }
     }
 
