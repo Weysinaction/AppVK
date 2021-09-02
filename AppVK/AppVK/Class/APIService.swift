@@ -23,7 +23,7 @@ final class APIService {
 
     // MARK: public methods
 
-    func getFriends(completion: @escaping () -> ()) {
+    func getFriends() {
         let urlPath =
             "https://api.vk.com/method/friends.get?v=5.131&order=name&access_token=\(token)&fields=city,photo_100"
         AF.request(urlPath).responseData { response in
@@ -33,9 +33,7 @@ final class APIService {
                 let json = try JSON(data: data)
                 guard let jsonArray = json["response"]["items"].array else { return }
                 self.addFriends(array: jsonArray)
-                completion()
             } catch {
-                completion()
                 print("ERROR")
             }
         }
@@ -58,7 +56,7 @@ final class APIService {
         }
     }
 
-    func getGroups(completion: @escaping () -> ()) {
+    func getGroups() {
         let urlPath =
             "https://api.vk.com/method/groups.get?v=5.131&user_id=\(UserInfo.userInfo.userID)&extended=1&access_token=\(token)&fields=activity"
         AF.request(urlPath).responseData { _ in
@@ -69,10 +67,8 @@ final class APIService {
                     let json = try JSON(data: data)
                     guard let jsonArray = json["response"]["items"].array else { return }
                     self.addGroups(array: jsonArray)
-                    completion()
                 } catch {
                     print("ERROR")
-                    completion()
                 }
             }
         }

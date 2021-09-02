@@ -10,6 +10,7 @@ final class GroupsTableViewController: UITableViewController {
     private var groupsArray: [GroupRealm] = []
     private var allGroupsArray: [Group] = []
     private var service = APIService()
+    private var token: NotificationToken?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,19 +43,33 @@ final class GroupsTableViewController: UITableViewController {
     }
 
     private func setupGroupsData() {
-        service.getGroups { [weak self] in
-            self?.loadFromRealm()
-            self?.tableView.reloadData()
-        }
+        service.getGroups()
+        loadFromRealm()
     }
 
     private func loadFromRealm() {
         do {
             let realm = try Realm()
             let groups = realm.objects(GroupRealm.self)
+            pairTableAndRealm()
             groupsArray = Array(groups)
         } catch {
             print(error)
+        }
+    }
+
+    private func pairTableAndRealm() {
+        guard let realm = try? Realm() else { return }
+        let groups = realm.objects(GroupRealm.self)
+        token = groups.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case let .initial(result):
+                self?.groupsArray = Array(result)
+            case let .update(result, deletions: _, insertions: _, modifications: _):
+                self?.groupsArray = Array(result)
+            case let .error(error):
+                fatalError("\(error)")
+            }
         }
     }
 
