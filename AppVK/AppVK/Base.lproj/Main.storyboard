@@ -12,7 +12,7 @@
         <!--Web View Controller-->
         <scene sceneID="YT8-HC-myL">
             <objects>
-                <viewController id="i1K-k4-qny" customClass="WebViewController" customModule="AppVK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="i1K-k4-qny" customClass="WebViewController" customModule="AppVK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jyS-j1-tP8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,6 +35,7 @@
                             <constraint firstItem="VMB-fD-UvG" firstAttribute="top" secondItem="YCR-5I-Lwk" secondAttribute="top" id="w6C-Ab-7gx"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="lXq-TW-bcC"/>
                     <connections>
                         <outlet property="wkWebView" destination="VMB-fD-UvG" id="wvg-jD-gXv"/>
                         <segue destination="Rjy-Ii-pmR" kind="show" identifier="openMainInterface" id="8NE-ZO-vAx"/>
@@ -42,7 +43,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFb-X3-idg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1569.5652173913045" y="75.669642857142847"/>
+            <point key="canvasLocation" x="1901" y="76"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -70,7 +71,7 @@
                                             <constraint firstAttribute="width" constant="200" id="2CK-4Z-2Gb"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cgu-oi-IA6">
                                         <rect key="frame" x="107" y="310" width="200" height="34"/>
@@ -80,6 +81,27 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlX-Zp-cdi">
+                                        <rect key="frame" x="107" y="616" width="200" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="lXX-dl-Dt3"/>
+                                            <constraint firstAttribute="height" constant="50" id="ynE-uB-5dG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Зарегистрироваться">
+                                            <color key="titleColor" systemColor="systemBlueColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g60-xP-7qR"/>
+                                            <action selector="registrationButtontapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MK3-Df-rrz"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пароль" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WS3-M1-pdT">
                                         <rect key="frame" x="107" y="281.5" width="200" height="20.5"/>
                                         <constraints>
@@ -143,6 +165,10 @@
                                                     <constraint firstAttribute="height" constant="20" id="y6c-eS-Ual"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsM-sw-BAY">
+                                                <rect key="frame" x="106" y="613" width="202" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -167,7 +193,9 @@
                                     <constraint firstItem="WS3-M1-pdT" firstAttribute="top" secondItem="4wy-aB-Chb" secondAttribute="bottom" constant="27" id="DX2-R8-QRz"/>
                                     <constraint firstItem="Qk9-Gf-fTh" firstAttribute="leading" secondItem="5CS-iN-GQ7" secondAttribute="leading" id="DZF-TM-bLc"/>
                                     <constraint firstItem="4wy-aB-Chb" firstAttribute="centerX" secondItem="x1u-ll-zji" secondAttribute="centerX" id="JRS-5z-L3f"/>
+                                    <constraint firstItem="vlX-Zp-cdi" firstAttribute="top" secondItem="5yy-79-xs3" secondAttribute="bottom" constant="21" id="LJ3-0f-ewI"/>
                                     <constraint firstItem="Qk9-Gf-fTh" firstAttribute="top" secondItem="5CS-iN-GQ7" secondAttribute="top" id="LNU-PC-iQ3"/>
+                                    <constraint firstAttribute="trailing" secondItem="vlX-Zp-cdi" secondAttribute="trailing" constant="107" id="Tin-Pd-aY1"/>
                                     <constraint firstItem="cgu-oi-IA6" firstAttribute="centerX" secondItem="WS3-M1-pdT" secondAttribute="centerX" id="VoM-ic-QlI"/>
                                     <constraint firstItem="WS3-M1-pdT" firstAttribute="centerX" secondItem="4wy-aB-Chb" secondAttribute="centerX" id="WDZ-hL-9dx"/>
                                     <constraint firstItem="b5l-mS-o2R" firstAttribute="leading" secondItem="NmX-Jd-Xl5" secondAttribute="leading" id="YHn-Od-4b8"/>
@@ -206,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1477" y="-625"/>
+            <point key="canvasLocation" x="957.97101449275374" y="75.669642857142847"/>
         </scene>
         <!--Friends-->
         <scene sceneID="16m-Dp-9MC">
@@ -227,7 +255,7 @@
             </objects>
             <point key="canvasLocation" x="3652" y="-278"/>
         </scene>
-        <!--Friends Table View Controller-->
+        <!--Title-->
         <scene sceneID="1u6-BH-3wF">
             <objects>
                 <tableViewController id="Yde-pd-ekk" customClass="FriendsTableViewController" customModule="AppVK" customModuleProvider="target" sceneMemberID="viewController">
@@ -286,7 +314,13 @@
                             <outlet property="delegate" destination="Yde-pd-ekk" id="Efu-zZ-2Mn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="0EF-S2-wZj"/>
+                    <navigationItem key="navigationItem" title="Title" id="Wgq-NF-efe">
+                        <barButtonItem key="rightBarButtonItem" title="Выйти" id="5xD-Bh-ql6">
+                            <connections>
+                                <action selector="exitButtonTapped:" destination="Yde-pd-ekk" id="ewB-hb-Pt3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="UMd-qf-HzQ" kind="show" identifier="DetailSegue" id="Lj2-x9-uzX"/>
                     </connections>
@@ -672,6 +706,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -1,6 +1,7 @@
 // FriendsTableViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
+import FirebaseAuth
 import RealmSwift
 import UIKit
 
@@ -130,6 +131,17 @@ final class FriendsTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 imageView.imageView.image = UIImage(data: data)
             }
+        }
+    }
+
+    // MARK: IBAction
+
+    @IBAction func exitButtonTapped(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            dismiss(animated: true)
+        } catch {
+            print("Auth sign out failed:\(error)")
         }
     }
 

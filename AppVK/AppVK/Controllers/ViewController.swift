@@ -1,6 +1,8 @@
 // ViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
+import FirebaseAuth
+import FirebaseDatabase
 import UIKit
 
 /// ViewController-
@@ -18,6 +20,7 @@ final class ViewController: UIViewController {
 
     // MARK: private properties
 
+    private var handle: AuthStateDidChangeListenerHandle!
     private var scrollViewTapGestureRecognizer = UITapGestureRecognizer()
     private var tabBarShowID = "tabBarShow"
 
@@ -33,8 +36,17 @@ final class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         addNotificationObservers()
+        handle = Auth.auth().addStateDidChangeListener { _, user in
+            if user != nil {
+                self.loginTextField.text = ""
+                self.passwordTextField.text = ""
+                self.addViewAnimation()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.performSegue(withIdentifier: self.tabBarShowID, sender: nil)
+                }
+            }
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,7 +55,13 @@ final class ViewController: UIViewController {
         removeNotificationObservers()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        Auth.auth().removeStateDidChangeListener(handle)
+    }
+
     // MARK: private methods
+
+    private func addUserToFirebase(id: Int) {}
 
     private func addViewAnimation() {
         loadingView.isHidden = false
@@ -123,16 +141,49 @@ final class ViewController: UIViewController {
 
     // MARK: IBAction
 
-    @IBAction func loginButtonTapped(_ sender: Any) {
-        guard let login = loginTextField.text, let password = passwordTextField.text else { return }
-
-        addViewAnimation()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.performSegue(withIdentifier: self.tabBarShowID, sender: self.buttonLogin)
+    @IBAction func registrationButtontapped(_ sender: Any) {
+        let alert = UIAlertController(title: "Register", message: "Register", preferredStyle: .alert)
+        alert.addTextField { textEmail in
+            textEmail.placeholder = "Enter your email"
+        }
+        alert.addTextField { textPassword in
+            textPassword.isSecureTextEntry = true
+            textPassword.placeholder = "Enter your password"
         }
 
-        if login.isEmpty, password.isEmpty {
-            showAlert(title: "Ошибка!", message: "Неправильный логин/пароль")
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let saveAction = UIAlertAction(title: "Save", style: .cancel) { _ in
+            guard let emailField = alert.textFields?[0],
+                  let passwordField = alert.textFields?[1],
+                  let password = passwordField.text,
+                  let email = emailField.text else { return }
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] _, error in
+                if let error = error {
+                    self?.showAlert(title: "Error", message: error.localizedDescription)
+                } else {
+                    Auth.auth().signIn(withEmail: email, password: password)
+                }
+            }
+        }
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        guard let login = loginTextField.text,
+              let password = passwordTextField.text,
+              login.count > 0,
+              password.count > 0
+        else {
+            showAlert(title: "Error", message: "Login/Password is empty")
+            return
+        }
+
+        Auth.auth().signIn(withEmail: login, password: password) { [weak self] user, error in
+            if let error = error, user == nil {
+                self?.showAlert(title: "Error", message: error.localizedDescription)
+            }
         }
     }
 }
