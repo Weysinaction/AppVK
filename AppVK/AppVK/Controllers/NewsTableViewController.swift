@@ -58,22 +58,50 @@ final class NewsTableViewController: UITableViewController {
     }
 
     private func configureCell(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? NewsTableViewCell
-        else { return UITableViewCell() }
+        var cellID = ""
 
-        cell.name = newsArray[indexPath.row].name
-        cell.subtitle = newsArray[indexPath.row].subtitle
-        cell.profileImageName = newsArray[indexPath.row].profileImageName
-        cell.newsText = newsArray[indexPath.row].newsText
-        cell.newsImageName = newsArray[indexPath.row].newsImageName
-
-        return cell
+        switch indexPath.row {
+        case 0: cellID = "headerCell"
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: cellID,
+                for: indexPath
+            ) as? HeaderTableViewCell
+            else { return UITableViewCell() }
+            return cell
+        case 1: cellID = "textNewsCell"
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: cellID,
+                for: indexPath
+            ) as? TextNewsTableViewCell
+            else { return UITableViewCell() }
+            return cell
+        case 2: cellID = "imageNewsCell"
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: cellID,
+                for: indexPath
+            ) as? ImageTableViewCell
+            else { return UITableViewCell() }
+            return cell
+        case 3: cellID = "likesCell"
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: cellID,
+                for: indexPath
+            ) as? LikesTableViewCell
+            else { return UITableViewCell() }
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 
     // MARK: - Table view data source
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        3
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        newsArray.count
+        4
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,6 +111,17 @@ final class NewsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        550
+        switch indexPath.row {
+        case 0:
+            return 70
+        case 1:
+            return 60
+        case 2:
+            return 380
+        case 3:
+            return 50
+        default:
+            return 70
+        }
     }
 }
