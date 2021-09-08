@@ -1,6 +1,7 @@
 // WebViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
+import FirebaseDatabase
 import UIKit
 import WebKit
 
@@ -17,6 +18,7 @@ final class WebViewController: UIViewController {
     // MARK: private peroperties
 
     private var service = APIService()
+    private let ref = Database.database().reference(withPath: "users")
 
     // MARK: WebViewController
 
@@ -46,6 +48,12 @@ final class WebViewController: UIViewController {
         let request = URLRequest(url: url)
 
         wkWebView.load(request)
+    }
+
+    private func saveUserIDToFirebase(id: String) {
+        let user = UserFirebase()
+        user.id = id
+        ref.setValue(user.toAnyObject())
     }
 }
 
@@ -78,6 +86,8 @@ extension WebViewController: WKNavigationDelegate {
 
         print(token)
         print(userID)
+
+        saveUserIDToFirebase(id: userID)
 
         UserInfo.userInfo.token = token
         UserInfo.userInfo.userID = userID
