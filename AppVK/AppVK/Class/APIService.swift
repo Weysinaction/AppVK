@@ -12,7 +12,9 @@ final class APIService {
 
     var friendsArray: [Friend] = []
     var photosArray: [String] = []
-    var groupsArray: [Group] = []
+    var itemsArray: [JSON] = []
+    var profilesArray: [JSON] = []
+    var groupsArray: [JSON] = []
 
     // MARK: private properties
 
@@ -77,6 +79,29 @@ final class APIService {
     func getGroupsSearch() {
         let urlPath = "https://api.vk.com/method/groups.search?v=5.131&q=swift&access_token=\(token)"
         AF.request(urlPath).responseData { _ in
+        }
+    }
+
+    func getPosts() {
+        let urlPath =
+            "https://api.vk.com/method/newsfeed.get?v=5.131&access_token=\(token)&count=10&filters=post,photo"
+        AF.request(urlPath).responseData { _ in
+            AF.request(urlPath).responseData { response in
+
+                guard let data = response.value else { return }
+                do {
+                    let json = try JSON(data: data)
+                    print(json)
+
+                    guard let itemsArray = json["response"]["items"].array else { return }
+                    guard let profilesArray = json["response"]["profiles"].array else { return }
+                    guard let groupsArray = json["response"]["groups"].array else { return }
+
+                    self.addNews(itemsArray: itemsArray, profilesArray: profilesArray, groupsArray: groupsArray)
+                } catch {
+                    print("ERROR")
+                }
+            }
         }
     }
 
@@ -161,6 +186,100 @@ final class APIService {
             try realm.write {
                 realm.delete(oldGroups)
                 realm.add(groupsArray)
+            }
+        } catch {
+            print(error)
+        }
+    }
+
+    private func addNews(itemsArray: [JSON], profilesArray: [JSON], groupsArray: [JSON]) {
+        var items: [Item] = []
+        var profiles: [Profile] = []
+        var groups: [Group] = []
+
+        let dispatchGroup = DispatchGroup()
+
+        DispatchQueue.global().async(group: dispatchGroup) {
+            for value in itemsArray {
+                let countOfLikes = value["likes"]["count"].int ?? 0
+                let countsOfComments = value["comments"]["count"].int ?? 0
+                let countsOfReposts = value["reposts"]["count"].int ?? 0
+                let newsText = value["text"].string ?? ""
+                let sourceID = value["source_id"].int ?? 0
+
+                items.append(Item(
+                    countOfLikes: countOfLikes,
+                    countOfComments: countsOfComments,
+                    countOfReposts: countsOfReposts,
+                    sourceID: sourceID,
+                    newsText: newsText
+                ))
+            }
+        }
+        DispatchQueue.global().async(group: dispatchGroup) {
+            for value in profilesArray {
+                let sourceID = value["id"].int ?? 0
+                let firstName = value["first_name"].string ?? ""
+                let lastName = value["last_name"].string ?? ""
+                let photoURL = value["photo_100"].string ?? ""
+
+                profiles.append(Profile(
+                    sourceID: sourceID,
+                    firstName: firstName,
+                    lastName: lastName,
+                    photoURL: photoURL
+                ))
+            }
+        }
+        DispatchQueue.global().async(group: dispatchGroup) {
+            for value in groupsArray {
+                let sourceID = value["id"].int ?? 0
+                let name = value["name"].string ?? ""
+                let photoURL = value["photo_200"].string ?? ""
+
+                groups.append(Group(sourceID: sourceID, name: name, photoURL: photoURL))
+            }
+        }
+
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            self.configureNews(items: items, profiles: profiles, groups: groups)
+        }
+    }
+
+    private func configureNews(items: [Item], profiles: [Profile], groups: [Group]) {
+        var newsArray: [NewsRealm] = []
+        for items in items {
+            let news = NewsRealm()
+            news.countOfLikes = items.countOfLikes
+            news.countsOfComments = items.countOfComments
+            news.countsOfReposts = items.countOfReposts
+            news.newsText = items.newsText
+            if items.sourceID < 0 {
+                for group in groups {
+                    news.name = group.name
+                    news.userImageURL = group.photoURL
+                }
+            } else {
+                for profile in profiles {
+                    news.name = profile.firstName + " " + profile.lastName
+                    news.userImageURL = profile.photoURL
+                }
+            }
+            newsArray.append(news)
+        }
+        print(newsArray)
+        saveNewsToRealm(newsArray: newsArray)
+    }
+
+    private func saveNewsToRealm(newsArray: [NewsRealm]) {
+        do {
+            let realm = try Realm()
+
+            let oldNews = realm.objects(NewsRealm.self)
+
+            try realm.write {
+                realm.delete(oldNews)
+                realm.add(newsArray)
             }
         } catch {
             print(error)

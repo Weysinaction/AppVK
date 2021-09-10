@@ -29,6 +29,7 @@ final class FriendsTableViewController: UITableViewController {
         navigationController?.delegate = self
         setupData()
         setupSearchController()
+        service.getPosts()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
