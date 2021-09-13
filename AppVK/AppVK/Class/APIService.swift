@@ -3,6 +3,7 @@
 
 import Alamofire
 import Foundation
+import PromiseKit
 import RealmSwift
 import SwiftyJSON
 
@@ -10,7 +11,7 @@ import SwiftyJSON
 final class APIService {
     // MARK: public properties
 
-    var friendsArray: [Friend] = []
+    var friendsRealmArray: [FriendRealm] = []
     var photosArray: [String] = []
     var itemsArray: [JSON] = []
     var profilesArray: [JSON] = []
@@ -25,20 +26,26 @@ final class APIService {
 
     // MARK: public methods
 
-    func getFriends() {
+    func getFriends() -> Promise<[FriendRealm]> {
         let urlPath =
             "https://api.vk.com/method/friends.get?v=5.131&order=name&access_token=\(token)&fields=city,photo_100"
-        AF.request(urlPath).responseData { response in
 
-            guard let data = response.value else { return }
-            do {
-                let json = try JSON(data: data)
-                guard let jsonArray = json["response"]["items"].array else { return }
-                self.addFriends(array: jsonArray)
-            } catch {
-                print("ERROR")
+        let promise = Promise<[FriendRealm]> { resolver in
+            AF.request(urlPath).responseData { response in
+
+                guard let data = response.value else { return }
+                do {
+                    let json = try JSON(data: data)
+                    guard let jsonArray = json["response"]["items"].array else { return }
+                    self.addFriends(array: jsonArray)
+                    resolver.fulfill(self.friendsRealmArray)
+                } catch {
+                    resolver.reject(error)
+                    print("ERROR")
+                }
             }
         }
+        return promise
     }
 
     func getPhotos(ownerID: Int, completion: @escaping () -> ()) {
@@ -108,7 +115,7 @@ final class APIService {
     // MARK: private methods
 
     private func addFriends(array: [JSON]) {
-        var friendsRealmArray: [FriendRealm] = []
+        friendsRealmArray = []
 
         for value in array {
             let friend = FriendRealm()

@@ -2,6 +2,7 @@
 // Copyright © RoadMap. All rights reserved.
 
 import FirebaseAuth
+import PromiseKit
 import RealmSwift
 import UIKit
 
@@ -29,7 +30,6 @@ final class FriendsTableViewController: UITableViewController {
         navigationController?.delegate = self
         setupData()
         setupSearchController()
-        service.getPosts()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -90,7 +90,16 @@ final class FriendsTableViewController: UITableViewController {
     }
 
     private func setupData() {
-        service.getFriends()
+        firstly {
+            service.getFriends()
+        }.done { friends in
+            self.friendsRealmArray = friends
+            self.setupSections(array: self.friendsRealmArray)
+            self.tableView.reloadData()
+            print(friends)
+        }.catch { error in
+            print(error.localizedDescription)
+        }
         loadFromRealm()
         tableView.reloadData()
     }
