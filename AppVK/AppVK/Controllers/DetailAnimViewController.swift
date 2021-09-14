@@ -18,6 +18,7 @@ final class DetailAnimViewController: UIViewController {
     private var rightSwipeRecognizer = UISwipeGestureRecognizer()
     private var currentImageIndex = 0
     private var service = APIService()
+    private var photoService = PhotoService()
 
     private enum Direction {
         case left
@@ -49,6 +50,7 @@ final class DetailAnimViewController: UIViewController {
             guard let data = data, error == nil else { return }
             guard let image = UIImage(data: data) else { return }
             self.photoArray.append(image)
+            self.photoService.saveImageToCache(url: url.absoluteString, image: image)
             DispatchQueue.main.async {
                 self.setupPhotoImageView()
             }
