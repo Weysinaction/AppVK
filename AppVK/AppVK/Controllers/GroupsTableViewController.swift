@@ -6,17 +6,26 @@ import UIKit
 
 /// GroupsTableViewController-
 final class GroupsTableViewController: UITableViewController {
+    // MARK: public properties
+
+    var groupsArray: [GroupRealm] = []
+
+    // MARK: private properties
+
     private var cellID = "groupCell"
-    private var groupsArray: [GroupRealm] = []
     private var allGroupsArray: [Group] = []
     private var service = APIService()
     private var token: NotificationToken?
+
+    // MARK: GroupsTableViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupGroupsData()
     }
+
+    // MARK: private methods
 
     private func configureCell(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell? {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? GroupsTableViewCell
@@ -43,7 +52,18 @@ final class GroupsTableViewController: UITableViewController {
     }
 
     private func setupGroupsData() {
-        service.getGroups()
+        let opq = OperationQueue()
+        let getDataOperation = GetGroupsResponse()
+        opq.addOperation(getDataOperation)
+
+        let parseData = ParseData()
+        parseData.addDependency(getDataOperation)
+        opq.addOperation(parseData)
+
+        let saveGroupData = SaveGroupDataOperation()
+        saveGroupData.addDependency(parseData)
+        OperationQueue.main.addOperation(saveGroupData)
+
         loadFromRealm()
     }
 
@@ -79,6 +99,8 @@ final class GroupsTableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
+
+    // MARK: IBAction
 
     @IBAction func addTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Название группы", message: nil, preferredStyle: .alert)
