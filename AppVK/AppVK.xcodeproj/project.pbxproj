@@ -48,6 +48,7 @@
 		E086A63726EE6711002EC149 /* GetGroupsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A63626EE6711002EC149 /* GetGroupsResponse.swift */; };
 		E086A63926EE6DEA002EC149 /* ParseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A63826EE6DEA002EC149 /* ParseData.swift */; };
 		E086A63B26EE7045002EC149 /* SaveGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A63A26EE7045002EC149 /* SaveGroupData.swift */; };
+		E086A63D26F0B649002EC149 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086A63C26F0B649002EC149 /* PhotoService.swift */; };
 		E08B70CA26D5BF5A00229C89 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B70C926D5BF5A00229C89 /* WebViewController.swift */; };
 		E08B70CC26D6B87900229C89 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B70CB26D6B87900229C89 /* APIService.swift */; };
 		E08B70CE26D7BE8800229C89 /* FriendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B70CD26D7BE8800229C89 /* FriendResponse.swift */; };
@@ -131,6 +132,7 @@
 		E086A63626EE6711002EC149 /* GetGroupsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupsResponse.swift; sourceTree = "<group>"; };
 		E086A63826EE6DEA002EC149 /* ParseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseData.swift; sourceTree = "<group>"; };
 		E086A63A26EE7045002EC149 /* SaveGroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGroupData.swift; sourceTree = "<group>"; };
+		E086A63C26F0B649002EC149 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		E08B70C926D5BF5A00229C89 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E08B70CB26D6B87900229C89 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		E08B70CD26D7BE8800229C89 /* FriendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendResponse.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				E086A63826EE6DEA002EC149 /* ParseData.swift */,
 				E086A63A26EE7045002EC149 /* SaveGroupData.swift */,
 				E086A63626EE6711002EC149 /* GetGroupsResponse.swift */,
+				E086A63C26F0B649002EC149 /* PhotoService.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				E0F5F55726D2CF6D0042197F /* PopAnimator.swift in Sources */,
 				E02FF07426BCB24700E3C2E4 /* DetailCollectionViewController.swift in Sources */,
 				E086A62B26E93879002EC149 /* HeaderTableViewCell.swift in Sources */,
+				E086A63D26F0B649002EC149 /* PhotoService.swift in Sources */,
 				E02FF08026C2B38E00E3C2E4 /* ProfileImageView.swift in Sources */,
 				E02FF07026BCA2F700E3C2E4 /* GroupsTableViewController.swift in Sources */,
 				E02FF07626BCB25800E3C2E4 /* DetailCollectionViewCell.swift in Sources */,
