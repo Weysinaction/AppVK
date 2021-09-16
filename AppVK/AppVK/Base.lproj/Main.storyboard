@@ -746,6 +746,12 @@
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="commentsButton" destination="6Kg-Nb-Jns" id="Z79-zD-JIs"/>
+                                    <outlet property="likesControl" destination="cdl-8L-h2Q" id="Bcm-QN-SZX"/>
+                                    <outlet property="repostsButton" destination="phQ-40-bl5" id="rdV-CC-jnX"/>
+                                    <outlet property="viewsButton" destination="ECD-Bu-jR9" id="1Um-Rv-dbN"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

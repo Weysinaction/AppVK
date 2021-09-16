@@ -5,10 +5,13 @@ import UIKit
 
 /// LikeControl-
 class LikeControl: UIControl {
+    // MARK: public properties
+
+    var countOfLikes = 0
+
     // MARK: private properties
 
     private let buttonLike = UIButton()
-    private var countOfLikes = 0
 
     // MARK: LikeControl
 

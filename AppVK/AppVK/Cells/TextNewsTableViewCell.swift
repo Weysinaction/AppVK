@@ -12,4 +12,16 @@ class TextNewsTableViewCell: UITableViewCell {
     // MARK: public properties
 
     var newsText = ""
+
+    // MARK: TextNewsTableViewCell
+
+    override func layoutSubviews() {
+        setupLabel()
+    }
+
+    // MARK: private methods
+
+    private func setupLabel() {
+        postTextView.text = newsText
+    }
 }
