@@ -12,4 +12,23 @@ class ImageTableViewCell: UITableViewCell {
     // MARK: public properties
 
     var newsImageName = ""
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let url = URL(string: newsImageName) else { return }
+        downloadImage(url: url, imageView: postImageView)
+    }
+
+    private func getData(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+
+    private func downloadImage(url: URL, imageView: UIImageView) {
+        getData(url: url) { data, _, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async {
+                imageView.image = UIImage(data: data)
+            }
+        }
+    }
 }

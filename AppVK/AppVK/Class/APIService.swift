@@ -89,9 +89,9 @@ final class APIService {
         }
     }
 
-    func getPosts() {
+    func getPosts(startFrom: String) {
         let urlPath =
-            "https://api.vk.com/method/newsfeed.get?v=5.131&access_token=\(token)&count=10&filters=post,photo"
+            "https://api.vk.com/method/newsfeed.get?v=5.131&access_token=\(token)&count=10&filters=post"
         AF.request(urlPath).responseData { _ in
             AF.request(urlPath).responseData { response in
 
@@ -104,7 +104,11 @@ final class APIService {
                     guard let profilesArray = json["response"]["profiles"].array else { return }
                     guard let groupsArray = json["response"]["groups"].array else { return }
 
-                    self.addNews(itemsArray: itemsArray, profilesArray: profilesArray, groupsArray: groupsArray)
+                    self.addNews(
+                        itemsArray: itemsArray,
+                        profilesArray: profilesArray,
+                        groupsArray: groupsArray
+                    )
                 } catch {
                     print("ERROR")
                 }
@@ -209,17 +213,32 @@ final class APIService {
         DispatchQueue.global().async(group: dispatchGroup) {
             for value in itemsArray {
                 let countOfLikes = value["likes"]["count"].int ?? 0
-                let countsOfComments = value["comments"]["count"].int ?? 0
-                let countsOfReposts = value["reposts"]["count"].int ?? 0
+                let countOfComments = value["comments"]["count"].int ?? 0
+                let countOfReposts = value["reposts"]["count"].int ?? 0
+                let countOfViews = value["views"]["count"].int ?? 0
                 let newsText = value["text"].string ?? ""
                 let sourceID = value["source_id"].int ?? 0
+                let date = value["date"].int ?? 0
+                let attachments = value["attachments"].array
+                let sizes = attachments?.first?["photo"]["sizes"].array
+                let xSize = sizes?.first(where: { $0["type"].stringValue == "x"
+                })
+                let url = xSize?["url"].stringValue ?? ""
+                let width = xSize?["width"].int ?? 0
+                let height = xSize?["height"].int ?? 0
 
+                print("image width = \(width), height = \(height)")
                 items.append(Item(
                     countOfLikes: countOfLikes,
-                    countOfComments: countsOfComments,
-                    countOfReposts: countsOfReposts,
+                    countOfComments: countOfComments,
+                    countOfReposts: countOfReposts,
+                    countOfViews: countOfViews,
                     sourceID: sourceID,
-                    newsText: newsText
+                    newsText: newsText,
+                    newsImageURL: url,
+                    date: date,
+                    width: width,
+                    height: height
                 ))
             }
         }
@@ -260,21 +279,32 @@ final class APIService {
             news.countOfLikes = items.countOfLikes
             news.countsOfComments = items.countOfComments
             news.countsOfReposts = items.countOfReposts
+            news.countsOfViews = items.countOfViews
             news.newsText = items.newsText
-            if items.sourceID < 0 {
-                for group in groups {
-                    news.name = group.name
-                    news.userImageURL = group.photoURL
-                }
-            } else {
-                for profile in profiles {
-                    news.name = profile.firstName + " " + profile.lastName
-                    news.userImageURL = profile.photoURL
-                }
+            news.newsImageURL = items.newsImageURL
+            news.width = items.width
+            news.height = items.height
+
+            let dateTime = Date(timeIntervalSince1970: TimeInterval(Int(items.date)))
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .medium
+
+            news.date = dateFormatter.string(from: dateTime)
+
+            for group in groups where group.sourceID == abs(items.sourceID) {
+                news.name = group.name
+                news.userImageURL = group.photoURL
             }
+
+            for profile in profiles where profile.sourceID == items.sourceID {
+                news.name = profile.firstName + " " + profile.lastName
+                news.userImageURL = profile.photoURL
+            }
+
             newsArray.append(news)
         }
-        print(newsArray)
+        // print(newsArray)
         saveNewsToRealm(newsArray: newsArray)
     }
 
